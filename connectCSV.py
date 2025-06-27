@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from refractive_index_script import RefractiveIndexMaterial
 
-df = pd.read_csv("materials_with_crystal_codes.csv")
+df = pd.read_csv("materials.csv")
 
 database_path = os.path.join(os.path.expanduser("~"), ".refractiveindex.info-database")
 data_nk_path = os.path.join(database_path, "data-nk")
@@ -50,4 +50,4 @@ df["refractive_index"] = df.apply(get_refractive_index, axis=1)
 # Удаляем строки, где refractive_index равен null/NaN
 df = df.dropna(subset=["refractive_index"])
 
-df.to_csv("output_with_refractive_index.csv", index=False)
+df.to_csv("materials_refractive_index.csv", index=False)
